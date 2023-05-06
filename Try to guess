@@ -2,6 +2,7 @@ import random
 
 user_answer = ''
 number = random.randint(1, 101)
+print('Try to guess my number! UwU')
 left = 1
 right = 100
 middle = (left + right) // 2
@@ -16,3 +17,4 @@ while user_answer != number:
     if user_answer > number:
         print('Too much, try again. Almost done! ^_^')
         right = middle - 1
+        
