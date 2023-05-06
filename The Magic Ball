@@ -1,0 +1,27 @@
+import random
+
+answers = ['It is certain', 'It is decidedly so', 'Without a doubt',
+           'Yes definitely', 'You may rely on it', 'As I see it, yes',
+           'Most likely', 'Outlook good', 'Yes', 'Signs point to yes',
+           'Reply hazy, try again', 'Ask again later', 'Better not tell you now',
+           'Cannot predict now', 'Concentrate and ask again', "Don't count on it",
+           'My reply is no', 'My sources say no', 'Outlook not so good', 'Very doubtful']
+
+print("Hi! I'm the Magic Ball and I know the answer to any of your questions.")
+print('Tell me your name.')
+print('Nice to meet you, ' + input() + '!')
+
+user_ans = ''
+while user_ans != 'no':
+    print('Give me a question.')
+    input()
+
+    def choice():
+        return f'>>> {random.choice(answers)} <<<'
+
+
+    print(choice())
+    print('Anything else?')
+    user_ans = input()
+    if user_ans.lower() == 'no':
+        print('Come back, if you will have any questions!')
