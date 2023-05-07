@@ -6,6 +6,7 @@ def is_valid(user_text):
 
 
 user_answer = ''
+count = 0
 number = random.randint(1, 100)
 print('Try to guess my number! UwU')
 left = 1
@@ -17,12 +18,16 @@ while user_answer != number:
         print('You should try to guess a number between 1 and 100.')
         continue
     if int(user_answer) == number:
-        print('You are right!')
+        print('You are right!', f'You did it after {count} attempts.', sep='\n')
         break
     if int(user_answer) < number:
         print('Too few, try again. You are close! ;)')
         left = middle + 1
+        count += 1
     if int(user_answer) > number:
         print('Too much, try again. Almost done! ^_^')
         right = middle - 1
+        count += 1
+
+print('It was fun, thanks for playing!')
         
