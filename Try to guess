@@ -1,7 +1,7 @@
 import random
 
 
-def is_valid(user_text):    # user_answer check: int, []
+def is_valid(user_text):    # user_answer check: int, [ ; ]
     return str(user_text).isdigit() and 1 <= int(user_text) <= 100
 
 
@@ -10,6 +10,8 @@ def new_number():    # random number
 
 
 def main_loop():
+    print('Try to guess my number! UwU')
+    number = new_number()
     user_answer = ''
     count = 0  # user attempt counter
     while user_answer != number:
@@ -18,8 +20,14 @@ def main_loop():
             print('You should try to guess a number between 1 and 100.')
             continue
         if int(user_answer) == number:
-            print('You are right!', f'You did it after {count} attempts.', sep='\n')
-            break
+            print('You are right!',
+                  f'You did it after {count} attempts.',
+                  'Do you want to play again? (yes/no)', sep='\n')
+            user_answer = str(input())
+            if user_answer.lower() == 'yes':
+                return main_loop()
+            else:
+                break
         if int(user_answer) < number:
             print('Too few, try again. You are close! ;)')
             count += 1
@@ -28,9 +36,6 @@ def main_loop():
             count += 1
 
 
-number = new_number()
-print('Try to guess my number! UwU')
 main_loop()
-
 print('It was fun, thanks for playing!')
         
