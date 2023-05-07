@@ -36,6 +36,7 @@ def main_loop():
             count += 1
 
 
+print("Let's play the game!")
 main_loop()
 print('It was fun, thanks for playing!')
         
