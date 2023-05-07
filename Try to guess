@@ -2,22 +2,29 @@ import random
 
 
 def is_valid(user_text):    # user_answer check: int, [ ; ]
-    return str(user_text).isdigit() and 1 <= int(user_text) <= 100
+    return str(user_text).isdigit() and 1 <= int(user_text) <= right
 
 
 def new_number():    # random number
-    return random.randint(1, 100)
+    global right
+    print('You can change the range of numbers. Do you want it? (yes/no)')
+    if str(input()).lower() == 'no':
+        return random.randint(1, right)
+    else:
+        print('Write new range from 1 to ', end='' + '.')
+        right = int(input())
+        return random.randint(1, right)
 
 
 def main_loop():
-    print('Try to guess my number! UwU')
     number = new_number()
     user_answer = ''
     count = 0  # user attempt counter
+    print('Try to guess my number! UwU')
     while user_answer != number:
         user_answer = input()
         if is_valid(user_answer) is False:
-            print('You should try to guess a number between 1 and 100.')
+            print(f'You should try to guess a number between 1 and {right}.')
             continue
         if int(user_answer) == number:
             print('You are right!',
@@ -37,6 +44,7 @@ def main_loop():
 
 
 print("Let's play the game!")
+right = 100
 main_loop()
 print('It was fun, thanks for playing!')
         
