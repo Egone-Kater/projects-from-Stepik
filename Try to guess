@@ -1,33 +1,36 @@
 import random
 
 
-def is_valid(user_text):
+def is_valid(user_text):    # user_answer check: int, []
     return str(user_text).isdigit() and 1 <= int(user_text) <= 100
 
 
-user_answer = ''
-count = 0
-number = random.randint(1, 100)
+def new_number():    # random number
+    return random.randint(1, 100)
+
+
+def main_loop():
+    user_answer = ''
+    count = 0  # user attempt counter
+    while user_answer != number:
+        user_answer = input()
+        if is_valid(user_answer) is False:
+            print('You should try to guess a number between 1 and 100.')
+            continue
+        if int(user_answer) == number:
+            print('You are right!', f'You did it after {count} attempts.', sep='\n')
+            break
+        if int(user_answer) < number:
+            print('Too few, try again. You are close! ;)')
+            count += 1
+        if int(user_answer) > number:
+            print('Too much, try again. Almost done! ^_^')
+            count += 1
+
+
+number = new_number()
 print('Try to guess my number! UwU')
-left = 1
-right = 100
-middle = (left + right) // 2
-while user_answer != number:
-    user_answer = input()
-    if is_valid(user_answer) is False:
-        print('You should try to guess a number between 1 and 100.')
-        continue
-    if int(user_answer) == number:
-        print('You are right!', f'You did it after {count} attempts.', sep='\n')
-        break
-    if int(user_answer) < number:
-        print('Too few, try again. You are close! ;)')
-        left = middle + 1
-        count += 1
-    if int(user_answer) > number:
-        print('Too much, try again. Almost done! ^_^')
-        right = middle - 1
-        count += 1
+main_loop()
 
 print('It was fun, thanks for playing!')
         
