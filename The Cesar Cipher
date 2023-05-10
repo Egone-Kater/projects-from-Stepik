@@ -1,0 +1,75 @@
+eng_lower = 'abcdefghijklmnopqrstuvwxyz'
+eng_upper = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+rus_lower = "абвгдежзийклмнопрстуфхцчшщъыьэюя"
+rus_upper = "АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ"
+
+print('Необходимо зашифровать или дешифровать послание? (заш/деш)')
+user_answer1 = str(input())
+print('Выберете язык алфавита (англ/рус): ', end='')
+user_answer2 = str(input())
+print('Введите шаг сдвига: ', end='')
+step = int(input())
+
+if user_answer1 == 'заш' and user_answer2 == 'рус':
+    print('Введите текст послания.')
+    user_text = str(input())
+    print('Шифрование выполнено.')
+    for i in user_text:
+        if i.isupper():
+            cipher = (rus_upper.find(i) + step) % 32
+            print(rus_upper[cipher], end='')
+        elif i.islower():
+            cipher = (rus_lower.find(i) + step) % 32
+            print(rus_lower[cipher], end='')
+        elif i == ' ':
+            print(' ', end='')
+        elif i in ',.:!?':
+            print(i, end='')
+
+if user_answer1 == 'заш' and user_answer2 == 'англ':
+    print('Введите текст послания.')
+    user_text = str(input())
+    print('Шифрование выполнено.')
+    for i in user_text:
+        if i.isupper():
+            cipher = (eng_upper.find(i) + step) % 26
+            print(eng_upper[cipher], end='')
+        elif i.islower():
+            cipher = (eng_lower.find(i) + step) % 26
+            print(eng_lower[cipher], end='')
+        elif i == ' ':
+            print(' ', end='')
+        elif i in ',.:!?':
+            print(i, end='')
+
+if user_answer1 == 'деш' and user_answer2 == 'рус':
+    print('Введите текст послания.')
+    user_text = str(input())
+    print('Шифрование выполнено.')
+    for i in user_text:
+        if i.isupper():
+            cipher = (rus_upper.find(i) - step) % 32
+            print(rus_upper[cipher], end='')
+        elif i.islower():
+            cipher = (rus_lower.find(i) - step) % 32
+            print(rus_lower[cipher], end='')
+        elif i == ' ':
+            print(' ', end='')
+        elif i in ',.:!?':
+            print(i, end='')
+
+if user_answer1 == 'деш' and user_answer2 == 'англ':
+    print('Введите текст послания.')
+    user_text = str(input())
+    print('Шифрование выполнено.')
+    for i in user_text:
+        if i.isupper():
+            cipher = (eng_upper.find(i) - step) % 26
+            print(eng_upper[cipher], end='')
+        elif i.islower():
+            cipher = (eng_lower.find(i) - step) % 26
+            print(eng_lower[cipher], end='')
+        elif i == ' ':
+            print(' ', end='')
+        elif i in ',.:!?':
+            print(i, end='')
