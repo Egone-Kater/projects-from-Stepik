@@ -1,0 +1,71 @@
+print('Введите число: ', end='')
+user_number = input()
+print('Хотите перевести из десятичной? (да/нет)')
+user_answer = input()
+print('Введите систему счисления: ', end='')
+user_system = int(input())
+
+
+# из n-го в 10ю
+def by_ten(number, system):
+    ten_number = []
+    counter_list = []
+    counter = 0
+    ten_system = 0
+    for i in str(number):
+        ten_number += i
+        counter_list += str(counter)
+        counter += 1
+    counter_list = counter_list[-1::-1]
+    if system == 16:
+        for i in ten_number:
+            if i == 'A':
+                ten_number[ten_number.index(i)] = '10'
+            elif i == 'B':
+                ten_number[ten_number.index(i)] = '11'
+            elif i == 'C':
+                ten_number[ten_number.index(i)] = '12'
+            elif i == 'D':
+                ten_number[ten_number.index(i)] = '13'
+            elif i == 'E':
+                ten_number[ten_number.index(i)] = '14'
+            elif i == 'F':
+                ten_number[ten_number.index(i)] = '15'
+    print(ten_number)
+    print(counter_list)
+    counter = 0
+    for j in ten_number:
+        ten_system += int(j) * (system ** int(counter_list[counter]))
+        counter += 1
+    print(ten_system)
+
+
+# из 10-й в любую другую
+def from_ten(number, system):
+    system_number = ''
+    number = int(number)
+    system_number += str(number % system) + ' '
+    while number >= system:
+        number = number // system
+        system_number += str(number % system) + ' '
+    system_number = system_number.split()
+    for i in system_number:
+        if i == '10':
+            system_number[system_number.index(i)] = 'A'
+        elif i == '11':
+            system_number[system_number.index(i)] = 'B'
+        elif i == '12':
+            system_number[system_number.index(i)] = 'C'
+        elif i == '13':
+            system_number[system_number.index(i)] = 'D'
+        elif i == '14':
+            system_number[system_number.index(i)] = 'E'
+        elif i == '15':
+            system_number[system_number.index(i)] = 'F'
+    print(*system_number[-1::-1], sep='')
+
+
+if user_answer == 'нет':
+    by_ten(user_number, user_system)
+elif user_answer == 'да':
+    from_ten(user_number, user_system)
